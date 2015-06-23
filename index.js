@@ -3,9 +3,6 @@ var chrome = require('selenium-webdriver/chrome');
 var path = require('path');
 var options = new chrome.Options();
 
-
-//options.setChromeBinaryPath('/Users/sam/Downloads/chrome-mac/Chromium.app/Contents/MacOS/Chromium');
-
 //expose gc to js
 options.addArguments('--js-flags=--expose-gc');
 options.setLoggingPrefs({performance: 'ALL'});
@@ -21,7 +18,6 @@ var driver = new webdriver.Builder()
 .setChromeOptions(options)
 .build();
 
-
 var logs = new webdriver.WebDriver.Logs(driver);
 
 logs.get('performance').then(function(v) {
@@ -32,4 +28,3 @@ logs.get('performance').then(function(v) {
 
 driver.get('file://' + path.join(__dirname, 'test/test.html'));
 driver.quit();
-
