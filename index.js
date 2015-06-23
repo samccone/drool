@@ -21,6 +21,15 @@ var driver = new webdriver.Builder()
 .setChromeOptions(options)
 .build();
 
+
+var logs = new webdriver.WebDriver.Logs(driver);
+
+logs.get('performance').then(function(v) {
+  console.log(v.filter(function(v) {
+    return JSON.parse(v.message).message.params.name === 'UpdateCounters'
+  }));
+});
+
 driver.get('file://' + path.join(__dirname, 'test/test.html'));
-driver.sleep(1000);
 driver.quit();
+
