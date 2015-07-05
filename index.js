@@ -20,11 +20,26 @@ var driver = new webdriver.Builder()
 
 var logs = new webdriver.WebDriver.Logs(driver);
 
-logs.get('performance').then(function(v) {
-  console.log(v.filter(function(v) {
-    return JSON.parse(v.message).message.params.name === 'UpdateCounters'
-  }));
-});
-
 driver.get('file://' + path.join(__dirname, 'test/test.html'));
+
+getNodeandListnerCount(driver);
+getNodeandListnerCount(driver);
+
 driver.quit();
+
+function getNodeandListnerCount(driver) {
+  driver.executeScript('gc()');
+  getLastCounts(driver)
+  .then(console.log.bind(console));
+}
+
+function getLastCounts(driver) {
+  return logs.get('performance')
+  .then(function(v) {
+    var d = v.filter(function(v) {
+      return JSON.parse(v.message).message.params.name === 'UpdateCounters';
+    }).pop();
+
+    return JSON.parse(d.message).message.params.args.data;
+  });
+}
