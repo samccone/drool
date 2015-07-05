@@ -2,6 +2,7 @@ var webdriver = require('selenium-webdriver');
 var chrome = require('selenium-webdriver/chrome');
 var path = require('path');
 var options = new chrome.Options();
+var results = [];
 
 //expose gc to js
 options.addArguments('--js-flags=--expose-gc');
@@ -37,10 +38,14 @@ getNodeandListenerCount(driver);
 
 driver.quit();
 
+webdriver.promise.controlFlow().execute(function() {
+  console.log(JSON.stringify(results));
+});
+
 function getNodeandListenerCount(driver) {
   driver.executeScript('gc()');
   getLastCounts(driver)
-  .then(console.log.bind(console));
+  .then(results.push.bind(results));
 }
 
 function getLastCounts(driver) {
