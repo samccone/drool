@@ -22,12 +22,22 @@ var logs = new webdriver.WebDriver.Logs(driver);
 
 driver.get('file://' + path.join(__dirname, 'test/test.html'));
 
-getNodeandListnerCount(driver);
-getNodeandListnerCount(driver);
+getNodeandListenerCount(driver);
+
+driver.findElement(webdriver.By.css('#leak')).click();
+driver.findElement(webdriver.By.css('#leak')).click();
+driver.findElement(webdriver.By.css('#leak')).click();
+driver.findElement(webdriver.By.css('#leak')).click();
+
+getNodeandListenerCount(driver);
+
+driver.findElement(webdriver.By.css('#clean')).click();
+
+getNodeandListenerCount(driver);
 
 driver.quit();
 
-function getNodeandListnerCount(driver) {
+function getNodeandListenerCount(driver) {
   driver.executeScript('gc()');
   getLastCounts(driver)
   .then(console.log.bind(console));

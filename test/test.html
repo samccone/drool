@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <button id='leak'></button>
+    <button id='clean'></button>
+    <script>
+      var elms = [];
+      document.getElementById('clean').addEventListener('click', function() {
+        elms = [];
+      });
+       document.getElementById('leak').addEventListener('click', function() {
+        elms.push(document.createElement('span'));
+      });
+    </script>
+  </body>
+</html>
