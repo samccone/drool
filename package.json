@@ -1,4 +1,7 @@
 {
+  "main": {
+    "lib/index.js"
+  },
   "dependencies": {
     "selenium-webdriver": "^2.46.1"
   }
