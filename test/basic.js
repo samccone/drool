@@ -3,7 +3,10 @@ var leaky = require('../lib/');
 var path = require('path');
 var results = [];
 
-var driver = leaky.start();
+var driver = leaky.start({
+  chromeOptions: 'no-sandbox',
+  chromeBinaryPath: '/home/travis/build/samccone/leaky/chrome-linux/chrome'
+});
 
 driver.get('file://' + path.join(__dirname, 'test.html'));
 

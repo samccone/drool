@@ -14,3 +14,4 @@ Chrome devtools is a powerful utility layer for detecting memory issues, yet the
 
 Ensure that you have at least version `2.16.333243` of chromedriver.
 
+[![Build Status](https://travis-ci.org/samccone/leaky.svg?branch=master)](https://travis-ci.org/samccone/leaky)
