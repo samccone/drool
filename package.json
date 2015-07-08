@@ -1,5 +1,6 @@
 {
   "main": "lib/index.js",
+  "name": "leaky",
   "scripts": {
     "test": "node test/basic.js"
   },
