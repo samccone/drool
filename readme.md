@@ -14,4 +14,27 @@ Chrome devtools is a powerful utility layer for detecting memory issues, yet the
 
 Ensure that you have at least version `2.16.333243` of chromedriver.
 
+leaky exposes two methods for you
+
+```js
+var leaky = require('samccone/leaky');
+
+var driver = leaky.start({
+  chromeOptions: 'no-sandbox',
+  chromeBinaryPath: '<optional - useful for CI>'
+});
+
+driver.get('http://localhost:8000');
+
+leaky.getCounts(driver)
+.then(function(memory){});
+
+// do your actions here
+
+leaky.getCounts(driver)
+.then(function(memory){});
+
+driver.quit();
+```
+
 [![Build Status](https://travis-ci.org/samccone/leaky.svg?branch=master)](https://travis-ci.org/samccone/leaky)
