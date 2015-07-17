@@ -3,9 +3,12 @@
   "name": "leaky",
   "version": "0.1.0",
   "scripts": {
-    "test": "node test/basic.js && node test/inputs.js"
+    "test": "mocha test/tests.js --timeout=10000"
   },
   "dependencies": {
     "selenium-webdriver": "^2.46.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
   }
 }
