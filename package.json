@@ -3,7 +3,7 @@
   "name": "leaky",
   "version": "0.1.0",
   "scripts": {
-    "test": "node test/basic.js"
+    "test": "node test/basic.js && node test/inputs.js"
   },
   "dependencies": {
     "selenium-webdriver": "^2.46.1"
