@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+	<body>
+		<input type='text' />
+		<button id='clear'>Clear</button>
+		<script>
+			var str_EMPTY = '';			
+			document.querySelector('#clear').addEventListener('click', function clear () {
+				document.querySelector('input').value = str_EMPTY;
+			}, false);
+			
+		</script>
+	</body>
+</html>
