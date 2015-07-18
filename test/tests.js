@@ -37,6 +37,43 @@ describe('memory tests', function() {
     }.bind(this));
   });
 
+  it('should not leak on initial typing', function() {
+    this.driver.get('file://' + path.join(__dirname, 'examples/', 'input_typeAndClear.html'));
+
+    this.driver.findElement(webdriver.By.css('input')).sendKeys('A');
+    this.driver.findElement(webdriver.By.css('input')).sendKeys(webdriver.Key.BACK_SPACE);
+
+    leaky.getCounts(this.driver)
+    .then(this.results.push.bind(this.results));
+
+    this.driver.findElement(webdriver.By.css('input')).sendKeys('A');
+
+    return leaky.getCounts(this.driver)
+    .then(function(data) {
+      assert.equal(data.nodes, this.results[0].nodes, 'node count should match');
+    }.bind(this));
+  });
+
+  it('should not leak on typing and clearing', function() {
+    this.driver.get('file://' + path.join(__dirname, 'examples/', 'input_typeAndClear.html'));
+
+    this.driver.findElement(webdriver.By.css('input')).sendKeys('B');
+    this.driver.findElement(webdriver.By.css('input')).sendKeys(webdriver.Key.BACK_SPACE);
+
+    leaky.getCounts(this.driver)
+    .then(this.results.push.bind(this.results));
+
+    for (var i = 0; i < 5; ++i) {
+      this.driver.findElement(webdriver.By.css('input')).sendKeys('B');
+      this.driver.findElement(webdriver.By.css('input')).sendKeys(webdriver.Key.BACK_SPACE);
+    }
+
+    return leaky.getCounts(this.driver)
+    .then(function(data) {
+      assert.equal(data.nodes, this.results[0].nodes, 'node count should match');
+    }.bind(this));
+  });
+
   it('shows leaks', function() {
     this.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
     leaky.getCounts(this.driver)
