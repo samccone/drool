@@ -1,6 +1,6 @@
 {
   "main": "lib/index.js",
-  "name": "leaky",
+  "name": "drool",
   "version": "0.1.0",
   "scripts": {
     "test": "mocha test/tests.js --timeout=10000"

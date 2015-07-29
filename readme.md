@@ -1,4 +1,4 @@
-Leaky is an automation layer that is used to measure if a set of "clean" actions results in a DOM and or Listener leak.
+Drool is an automation layer that is used to measure if a set of "clean" actions results in a DOM and or Listener leak.
 
 ##### Why am I making this?
 
@@ -6,7 +6,7 @@ After running perf/memory tests across multiple [todomvc](https://github.com/tas
 
 ##### Goals
 
-Ideally leaky will leverage standard interfaces, such as todomvc, to test for leaks at a framework level. The result of which should help framework authors and developers realize that memory leaks are pervasive in the tools that we use.
+Ideally Drool will leverage standard interfaces, such as todomvc, to test for leaks at a framework level. The result of which should help framework authors and developers realize that memory leaks are pervasive in the tools that we use.
 
 Chrome devtools is a powerful utility layer for detecting memory issues, yet the fact still stands that most developers do not know how to use the tooling around it to arrive any thing that is directly actionable. Leaky aims to be a generic automated abstraction layer, so people can get good "numbers" in a consistent way without having to deep dive into memory profiling.
 
@@ -16,24 +16,24 @@ Ensure that you have at least version `2.16.333243` of chromedriver.
 
 
 ```js
-var leaky = require('leaky');
+var drool = require('drool');
 
-var driver = leaky.start({
+var driver = drool.start({
   chromeOptions: 'no-sandbox',
   chromeBinaryPath: '<optional - useful for CI>'
 });
 
 driver.get('http://localhost:8000');
 
-leaky.getCounts(driver)
+drool.getCounts(driver)
 .then(function(memory){});
 
 // do your actions here
 
-leaky.getCounts(driver)
+drool.getCounts(driver)
 .then(function(memory){});
 
 driver.quit();
 ```
 
-[![Build Status](https://travis-ci.org/samccone/leaky.svg?branch=master)](https://travis-ci.org/samccone/leaky)
+[![Build Status](https://travis-ci.org/samccone/drool.svg?branch=master)](https://travis-ci.org/samccone/drool)
