@@ -1,5 +1,12 @@
 Drool is an automation layer that is used to measure if a set of "clean" actions results in a DOM and or Listener leak.
 
+<p align="center">
+  <a href="docs/api.md"> View the API Docs </a> </br> </br>
+  <a href="https://travis-ci.org/samccone/drool"> <img src="https://travis-ci.org/samccone/drool.svg?branch=master" alt="Build Status"/></a>
+</p>
+
+--------------
+
 ##### Why am I making this?
 
 After running perf/memory tests across multiple [todomvc](https://github.com/tastejs/todomvc) implementations, I found that almost all implementations have significant memory leaks on the most basic of tasks. Worse yet, most of these leaks were introduced at a framework level, or were introduced by "expert/(framework authors)". The question arose in my mind, if people who authored a framework are introducing leaks in the most trivial of applications, how can users be expected to create non-leaking implementations of much more complex applications.
@@ -14,26 +21,31 @@ Chrome devtools is a powerful utility layer for detecting memory issues, yet the
 
 Ensure that you have at least version `2.16.333243` of chromedriver.
 
-
 ```js
 var drool = require('drool');
+var webdriver = require('selenium-webdriver');
+var assert = require('assert');
 
 var driver = drool.start({
-  chromeOptions: 'no-sandbox',
-  chromeBinaryPath: '<optional - useful for CI>'
+  chromeOptions: 'no-sandbox'
 });
 
-driver.get('http://localhost:8000');
-
-drool.getCounts(driver)
-.then(function(memory){});
-
-// do your actions here
-
-drool.getCounts(driver)
-.then(function(memory){});
+return drool.flow({
+  repeatCount: 100,
+  setup: function() {
+    driver.get('http://todomvc.com/examples/backbone/');
+  },
+  action: function() {
+    driver.findElement(webdriver.By.css('#new-todo')).sendKeys('find magical goats', webdriver.Key.ENTER);
+    driver.findElement(webdriver.By.css('#todo-list li')).click();
+    driver.findElement(webdriver.By.css('.destroy')).click();
+  },
+  assert: function(after, initial) {
+    assert.equal(initial.nodes, after.nodes, 'node count should match');
+  }
+}, driver)
 
 driver.quit();
 ```
 
-[![Build Status](https://travis-ci.org/samccone/drool.svg?branch=master)](https://travis-ci.org/samccone/drool)
+[View the API Docs](docs/api.md)
