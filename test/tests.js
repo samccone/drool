@@ -21,41 +21,55 @@ describe('memory tests', function() {
   });
 
   it('inputs should not leak when added and removed', function() {
-    this.driver.get('file://' + path.join(__dirname, 'examples/', 'inputs.html'));
+    var self = this;
 
-    drool.getCounts(this.driver)
-    .then(this.results.push.bind(this.results));
-
-    for (var i = 0; i < 20; ++i) {
-      this.driver.findElement(webdriver.By.css('#add-remove')).click();
-    }
-
-    return drool.getCounts(this.driver)
-    .then(function(data) {
-      assert.equal(this.results[0].nodes, data.nodes,
-          'node count should match');
-    }.bind(this));
+    return drool.flow({
+      setup: function() {
+        self.driver.get('file://' + path.join(__dirname, 'examples/', 'inputs.html'));
+      },
+      action: function() {
+        self.driver.findElement(webdriver.By.css('#add-remove')).click();
+      },
+      assert: function(after, initial) {
+        assert.equal(initial.nodes, after.nodes, 'node count should match');
+      }
+    }, self.driver);
   });
 
   it('shows leaks', function() {
-    this.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
-    drool.getCounts(this.driver)
-    .then(this.results.push.bind(this.results));
+    var self = this;
 
-    for (var i = 0; i < 4; ++i) {
-      this.driver.findElement(webdriver.By.css('#leak')).click();
-    }
+    return drool.flow({
+      setup: function() {
+        self.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
+      },
+      action: function() {
+        self.driver.findElement(webdriver.By.css('#leak')).click();
+      },
+      assert: function(after, initial) {
+        assert.notEqual(initial.nodes, after.nodes, 'node count should not match');
+      }
+    }, self.driver);
+  });
 
-    drool.getCounts(this.driver)
-    .then(function(data) {
-      assert.notEqual(data.nodes, this.results[0].nodes, 'node count does not match');
-    }.bind(this));
+  it('gcs correctly', function() {
+    var self = this;
 
-    this.driver.findElement(webdriver.By.css('#clean')).click();
-
-    return drool.getCounts(this.driver)
-    .then(function(data) {
-      assert.equal(data.nodes, this.results[0].nodes, 'node count does not grow');
-    }.bind(this));
+    return drool.flow({
+      setup: function() {
+        self.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
+      },
+      action: function() {
+        self.driver.findElement(webdriver.By.css('#leak')).click();
+      },
+      beforeAssert: function() {
+        self.driver.findElement(webdriver.By.css('#clean')).click();
+      },
+      assert: function(after, initial) {
+        // This is a hack, ony because we want to test clearing leaks
+        // and since the action is run once to prewarm the cache
+        assert.equal(initial.nodes - 1, after.nodes, 'node count does not grow');
+      }
+    }, self.driver);
   });
 });
