@@ -48,14 +48,14 @@ describe('memory tests', function() {
 
     drool.getCounts(this.driver)
     .then(function(data) {
-      assert.notEqual(this.results[0].nodes, data.nodes, 'node count does not match');
+      assert.notEqual(data.nodes, this.results[0].nodes, 'node count does not match');
     }.bind(this));
 
     this.driver.findElement(webdriver.By.css('#clean')).click();
 
     return drool.getCounts(this.driver)
     .then(function(data) {
-      assert.equal(this.results[0].nodes, data.nodes, 'node count does not grow');
+      assert.equal(data.nodes, this.results[0].nodes, 'node count does not grow');
     }.bind(this));
   });
 });
