@@ -107,7 +107,7 @@ return drool.flow({
   exit: function() {
     driver.get('https://google.com/');
   }
-}, self.driver);
+}, driver);
 ```
 
 #### getCounts
