@@ -23,7 +23,6 @@ Ensure that you have at least version `2.16.333243` of chromedriver.
 
 ```js
 var drool = require('drool');
-var webdriver = require('selenium-webdriver');
 var assert = require('assert');
 
 var driver = drool.start({
@@ -36,9 +35,9 @@ return drool.flow({
     driver.get('http://todomvc.com/examples/backbone/');
   },
   action: function() {
-    driver.findElement(webdriver.By.css('#new-todo')).sendKeys('find magical goats', webdriver.Key.ENTER);
-    driver.findElement(webdriver.By.css('#todo-list li')).click();
-    driver.findElement(webdriver.By.css('.destroy')).click();
+    driver.findElement(drool.webdriver.By.css('#new-todo')).sendKeys('find magical goats', drool.webdriver.Key.ENTER);
+    driver.findElement(drool.webdriver.By.css('#todo-list li')).click();
+    driver.findElement(drool.webdriver.By.css('.destroy')).click();
   },
   assert: function(after, initial) {
     assert.equal(initial.nodes, after.nodes, 'node count should match');

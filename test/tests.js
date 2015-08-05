@@ -1,5 +1,4 @@
 var assert = require('assert');
-var webdriver = require('selenium-webdriver');
 var drool = require('../lib/');
 var path = require('path');
 var config = {
@@ -28,7 +27,7 @@ describe('memory tests', function() {
         self.driver.get('file://' + path.join(__dirname, 'examples/', 'inputs.html'));
       },
       action: function() {
-        self.driver.findElement(webdriver.By.css('#add-remove')).click();
+        self.driver.findElement(drool.webdriver.By.css('#add-remove')).click();
       },
       assert: function(after, initial) {
         assert.equal(initial.nodes, after.nodes, 'node count should match');
@@ -44,7 +43,7 @@ describe('memory tests', function() {
         self.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
       },
       action: function() {
-        self.driver.findElement(webdriver.By.css('#leak')).click();
+        self.driver.findElement(drool.webdriver.By.css('#leak')).click();
       },
       assert: function(after, initial) {
         assert.notEqual(initial.nodes, after.nodes, 'node count should not match');
@@ -60,10 +59,10 @@ describe('memory tests', function() {
         self.driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
       },
       action: function() {
-        self.driver.findElement(webdriver.By.css('#leak')).click();
+        self.driver.findElement(drool.webdriver.By.css('#leak')).click();
       },
       beforeAssert: function() {
-        self.driver.findElement(webdriver.By.css('#clean')).click();
+        self.driver.findElement(drool.webdriver.By.css('#clean')).click();
       },
       assert: function(after, initial) {
         // This is a hack, ony because we want to test clearing leaks

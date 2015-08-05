@@ -10,6 +10,7 @@ Drool's goal is to make it simple to add memory regression and profiling tests t
   * [flow](#flow)
     * [flow cycle](#flow-cycle)
   * [getCounts](#getcounts)
+  * [webdriver](#webdriver)
 
 ### Quick Start
 
@@ -96,10 +97,10 @@ return drool.flow({
     driver.get('file://' + path.join(__dirname, 'examples/', 'inputs.html'));
   },
   action: function() {
-    driver.findElement(webdriver.By.css('button')).click();
+    driver.findElement(drool.webdriver.By.css('button')).click();
   },
   beforeAssert: function() {
-    driver.findElement(webdriver.By.css('#clean')).click();
+    driver.findElement(drool.webdriver.By.css('#clean')).click();
   },
   assert: function(after, initial) {
     assert.equal(initial.nodes, after.nodes, 'node count should match');
@@ -130,3 +131,7 @@ drool.getCounts(driver).then(function(data) {
   console.log('the node count is ' + data.nodes);
 });
 ```
+
+### webdriver
+
+The webdriver object exposed on drool, is a reference to the selenium-webdriver module required and used by drool.
