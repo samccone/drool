@@ -15,7 +15,7 @@ After running perf/memory tests across multiple [todomvc](https://github.com/tas
 
 Ideally Drool will leverage standard interfaces, such as todomvc, to test for leaks at a framework level. The result of which should help framework authors and developers realize that memory leaks are pervasive in the tools that we use.
 
-Chrome devtools is a powerful utility layer for detecting memory issues, yet the fact still stands that most developers do not know how to use the tooling around it to arrive any thing that is directly actionable. Leaky aims to be a generic automated abstraction layer, so people can get good "numbers" in a consistent way without having to deep dive into memory profiling.
+Chrome devtools is a powerful utility layer for detecting memory issues, yet the fact still stands that most developers do not know how to use the tooling around it to arrive any thing that is directly actionable. Drool aims to be a generic automated abstraction layer, so people can get good "numbers" in a consistent way without having to deep dive into memory profiling.
 
 ##### Running
 
