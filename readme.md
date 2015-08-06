@@ -29,7 +29,7 @@ var driver = drool.start({
   chromeOptions: 'no-sandbox'
 });
 
-return drool.flow({
+drool.flow({
   repeatCount: 100,
   setup: function() {
     driver.get('http://todomvc.com/examples/backbone/');
