@@ -35,6 +35,42 @@ describe('memory tests', function() {
     }, self.driver);
   });
 
+  it('should not leak on initial typing', function() {
+    this.driver.get('file://' + path.join(__dirname, 'examples/', 'input_typeAndClear.html'));
+
+    leaky.getCounts(this.driver)
+    .then(this.results.push.bind(this.results));
+
+    this.driver.findElement(webdriver.By.css('input')).sendKeys('A');
+
+    return leaky.getCounts(this.driver)
+    .then(function(data) {
+      assert.equal(this.results[0].nodes, data.nodes,
+          'node count should match');
+    }.bind(this))
+  });
+
+  it('should not leak on typing and clearing', function() {
+    this.driver.get('file://' + path.join(__dirname, 'examples/', 'input_typeAndClear.html'));
+
+    leaky.getCounts(this.driver)
+    .then(this.results.push.bind(this.results));
+
+    for (var i = 0; i < 5; ++i) {
+      get.call(this,  'input').sendKeys('Baz');
+      get.call(this, '#clear').click();
+    }
+    function get(selector) {
+      return this.driver.findElement(webdriver.By.css(selector)); 
+    }
+
+    return leaky.getCounts(this.driver)
+    .then(function(data) {
+      assert.equal(this.results[0].nodes, data.nodes,
+          'node count should match');
+    }.bind(this));
+  });
+
   it('shows leaks', function() {
     var self = this;
 
