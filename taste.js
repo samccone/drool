@@ -57,7 +57,16 @@ function listSelector(name) {
         });
       }, 5000);
 
-      driver.findElement(drool.webdriver.By.css(listSelector(name))).click();
+      driver.wait(function() {
+        return driver.findElement(drool.webdriver.By.css(listSelector(name))).click()
+        .thenCatch(function() {
+          return false;
+        })
+        .then(function() {
+          return true;
+        });
+      });
+
       driver.findElement(drool.webdriver.By.css('.destroy')).click();
     }.bind(null, name),
     assert: function(after, initial) {
