@@ -7,6 +7,8 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 
 --------------
 
+[![Join the chat at https://gitter.im/samccone/drool](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/samccone/drool?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ##### Why am I making this?
 
 After running perf/memory tests across multiple [todomvc](https://github.com/tastejs/todomvc) implementations, I found that almost all implementations have significant memory leaks on the most basic of tasks. Worse yet, most of these leaks were introduced at a framework level, or were introduced by "expert/(framework authors)". The question arose in my mind, if people who authored a framework are introducing leaks in the most trivial of applications, how can users be expected to create non-leaking implementations of much more complex applications.
