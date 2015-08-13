@@ -3,6 +3,7 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 <p align="center">
   <a href="docs/api.md"> View the API Docs </a> </br> </br>
   <a href="https://travis-ci.org/samccone/drool"> <img src="https://travis-ci.org/samccone/drool.svg?branch=master" alt="Build Status"/></a>
+  <a href="https://gitter.im/samccone/drool?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"> <img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/samccone/drool"/></a>
 </p>
 
 --------------
