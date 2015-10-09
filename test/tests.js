@@ -72,3 +72,23 @@ describe('memory tests', function() {
     }, self.driver);
   });
 });
+
+describe('drool.flow', function() {
+  it('throws helpfully when no driver is given', function(done) {
+    try {
+      drool.flow({
+        setup: function() {},
+        action: function() {},
+        beforeAssert: function() {},
+        assert: function() {}
+      });
+    } catch (e) {
+      assert.equal(
+        e.message,
+        'Please provide a driver (as returned by drool.start) as the second argument to drool.flow',
+        'helpful error is not thrown'
+      );
+      done();
+    }
+  });
+});
