@@ -8,7 +8,20 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 
 --------------
 
-##### 🚁 [Real world wins with drool](https://gist.github.com/samccone/3a266295cde754511988)
+#### Real World wins
+
+Drool has made it far easier to identify memory leaks in an automated and reproducable way, for example:
+
+* TodoMVC
+  * [JSBlocks](https://github.com/tastejs/todomvc/pull/1297#issuecomment-112828342) 
+  * [Atma.js](https://github.com/tastejs/todomvc/pull/1337#issuecomment-112821596)
+  * [Automated leak bases CI failures](https://github.com/tastejs/todomvc/pull/1464)
+* Chromium
+  * [Core input element node leak](https://code.google.com/p/chromium/issues/detail?id=516153)
+* Material Design Lite
+  * [Menu Component Leaking Listeners](https://github.com/google/material-design-lite/issues/761)
+* Beaker Notebook
+  * [CI memory smoketest on every PR](https://github.com/twosigma/beaker-notebook/blob/9298ccf33e646638f8a588405fa8fa5919742636/test/memory-tests.js)
 
 
 ##### Why am I making this?
