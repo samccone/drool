@@ -15,7 +15,7 @@ Drool has made it far easier to identify memory leaks in an automated and reprod
 * TodoMVC
   * [JSBlocks](https://github.com/tastejs/todomvc/pull/1297#issuecomment-112828342) 
   * [Atma.js](https://github.com/tastejs/todomvc/pull/1337#issuecomment-112821596)
-  * [Automated leak bases CI failures](https://github.com/tastejs/todomvc/pull/1464)
+  * [Automated leak based CI failures](https://github.com/tastejs/todomvc/pull/1464)
 * Chromium
   * [Core input element node leak](https://code.google.com/p/chromium/issues/detail?id=516153)
 * Material Design Lite
