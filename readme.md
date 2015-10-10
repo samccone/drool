@@ -8,9 +8,8 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 
 --------------
 
-##### Real world wins with drool.
+##### 🚁 [Real world wins with drool](https://gist.github.com/samccone/3a266295cde754511988)
 
-🚁 https://gist.github.com/samccone/3a266295cde754511988
 
 ##### Why am I making this?
 
