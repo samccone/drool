@@ -5,6 +5,10 @@
   "scripts": {
     "test": "mocha test/tests.js --timeout=10000"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samccone/drool.git"
+  },
   "dependencies": {
     "selenium-webdriver": "^2.46.1"
   },
