@@ -30,7 +30,7 @@ describe('memory tests', function() {
         self.driver.findElement(drool.webdriver.By.css('#add-remove')).click();
       },
       assert: function(after, initial) {
-        assert.equal(initial.nodes, after.nodes, 'node count should match');
+        assert.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
       }
     }, self.driver);
   });
@@ -46,7 +46,7 @@ describe('memory tests', function() {
         self.driver.findElement(drool.webdriver.By.css('#leak')).click();
       },
       assert: function(after, initial) {
-        assert.notEqual(initial.nodes, after.nodes, 'node count should not match');
+        assert.notEqual(initial.counts.nodes, after.counts.nodes, 'node count should not match');
       }
     }, self.driver);
   });
@@ -67,7 +67,25 @@ describe('memory tests', function() {
       assert: function(after, initial) {
         // This is a hack, ony because we want to test clearing leaks
         // and since the action is run once to prewarm the cache
-        assert.equal(initial.nodes - 1, after.nodes, 'node count does not grow');
+        assert.equal(initial.counts.nodes - 1, after.counts.nodes, 'node count does not grow');
+      }
+    }, self.driver);
+  });
+
+  it('exposes gc info', function() {
+    var self = this;
+
+    return drool.flow({
+      setup: function() {
+        self.driver.get('file://' + path.join(__dirname, 'examples/', 'inputs.html'));
+      },
+      action: function() {
+      },
+      assert: function(after, initial) {
+        var gcKeys = 'MinorGC,MajorGC,V8.GCScavenger,V8.GCIncrementalMarking';
+
+        assert.equal(Object.keys(initial.gc).join(','), gcKeys);
+        assert.equal(Object.keys(after.gc).join(','), gcKeys);
       }
     }, self.driver);
   });

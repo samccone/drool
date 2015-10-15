@@ -13,7 +13,7 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 Drool has made it far easier to identify memory leaks in an automated and reproducable way, for example:
 
 * TodoMVC
-  * [JSBlocks](https://github.com/tastejs/todomvc/pull/1297#issuecomment-112828342) 
+  * [JSBlocks](https://github.com/tastejs/todomvc/pull/1297#issuecomment-112828342)
   * [Atma.js](https://github.com/tastejs/todomvc/pull/1337#issuecomment-112821596)
   * [Automated leak based CI failures](https://github.com/tastejs/todomvc/pull/1464)
 * Chromium
@@ -57,7 +57,7 @@ drool.flow({
     driver.findElement(drool.webdriver.By.css('.destroy')).click();
   },
   assert: function(after, initial) {
-    assert.equal(initial.nodes, after.nodes, 'node count should match');
+    assert.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
   }
 }, driver)
 
