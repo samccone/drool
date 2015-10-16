@@ -52,8 +52,8 @@ drool.flow({
     driver.get('http://todomvc.com/examples/backbone/');
   },
   action: function() {
-    driver.findElement(drool.webdriver.By.css('#new-todo')).sendKeys('find magical goats', drool.webdriver.Key.ENTER);
-    driver.findElement(drool.webdriver.By.css('#todo-list li')).click();
+    driver.findElement(drool.webdriver.By.css('.new-todo')).sendKeys('find magical goats', drool.webdriver.Key.ENTER);
+    driver.findElement(drool.webdriver.By.css('.todo-list li')).click();
     driver.findElement(drool.webdriver.By.css('.destroy')).click();
   },
   assert: function(after, initial) {
