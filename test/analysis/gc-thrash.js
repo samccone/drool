@@ -63,9 +63,15 @@ var tests = [
 ];
 
 tests.forEach(function(test) {
-  var driver = drool.start({
+  var config = {
     chromeOptions: 'no-sandbox'
-  });
+  };
+
+  if (typeof process.env.chromeBinaryPath !== 'undefined') {
+    config.chromeBinaryPath = process.env.chromeBinaryPath;
+  }
+
+  var driver = drool.start(config);
 
   drool.flow({
     repeatCount: 10,
