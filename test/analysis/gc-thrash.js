@@ -7,6 +7,12 @@ var tests = [
     destroy: '.destroy'
   },
   {
+    url: 'http://todomvc.com/examples/angularjs/index.html',
+    todo: '#new-todo',
+    li: '#todo-list li',
+    destroy: '.destroy'
+  },
+  {
     url: 'http://todomvc.com/examples/vue/index.html',
     todo: '.new-todo',
     li: '.todo-list li',
