@@ -8,3 +8,6 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 - curl -Lo chrome.zip https://download-chromium.appspot.com/dl/Linux_x64 && unzip chrome.zip
 - curl -Lo chromedriver.zip http://chromedriver.storage.googleapis.com/2.16/chromedriver_linux64.zip && unzip chromedriver.zip
+script:
+- npm test
+- node test/analysis/gc-thrash.js
