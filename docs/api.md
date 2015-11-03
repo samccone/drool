@@ -40,7 +40,7 @@ return drool.flow({
     driver.findElement(webdriver.By.css('#leak')).click();
   },
   assert: function(after, initial) {
-    assert.notEqual(initial.nodes, after.nodes, 'node count should not match');
+    assert.notEqual(initial.counts.nodes, after.counts.nodes, 'node count should not match');
   }
 }, driver);
 ```
@@ -103,7 +103,7 @@ return drool.flow({
     driver.findElement(drool.webdriver.By.css('#clean')).click();
   },
   assert: function(after, initial) {
-    assert.equal(initial.nodes, after.nodes, 'node count should match');
+    assert.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
   },
   exit: function() {
     driver.get('https://google.com/');
@@ -118,17 +118,37 @@ The `getCounts` method abstracts the work of forcing a garbage collection and co
 `getCounts` returns a promise that resolves with the following data structure:
 
 ```json
-{ "documents": 1,
-  "jsEventListeners": 0,
-  "jsHeapSizeUsed": 1747160,
-  "nodes": 5 }
+{"counts": {
+		"documents": 1,
+		"jsEventListeners": 0,
+		"jsHeapSizeUsed": 1747160,
+		"nodes": 5
+	}, "gc": {
+		"MajorGC": {
+			"duration": 1,
+			"count": 1
+		},
+		"MinorGC": {
+			"duration": 1,
+			"count": 1
+		},
+		"V8.GCScavenger": {
+			"duration": 1,
+			"count": 1
+		},
+		"V8.GCIncrementalMarking": {
+			"duration": 1,
+			"count": 1
+		}
+	}
+}
 ```
 
 For example:
 
 ```js
 drool.getCounts(driver).then(function(data) {
-  console.log('the node count is ' + data.nodes);
+  console.log('the node count is ' + data.counts.nodes);
 });
 ```
 
