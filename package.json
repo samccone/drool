@@ -1,7 +1,7 @@
 {
   "main": "lib/index.js",
   "name": "drool",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "scripts": {
     "test": "mocha test/tests.js --timeout=10000"
   },
