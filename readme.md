@@ -10,7 +10,7 @@ Drool is an automation layer that is used to measure if a set of "clean" actions
 
 #### Real World wins
 
-Drool has made it far easier to identify memory leaks in an automated and reproducable way, for example:
+Drool has made it far easier to identify memory leaks in an automated and reproducible way, for example:
 
 * TodoMVC
   * [JSBlocks](https://github.com/tastejs/todomvc/pull/1297#issuecomment-112828342)
