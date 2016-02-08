@@ -1,4 +1,5 @@
 {
+  "engines" : {"node" : ">=4.0.0"},
   "main": "lib/index.js",
   "name": "drool",
   "version": "0.3.1",
@@ -10,7 +11,7 @@
     "url": "https://github.com/samccone/drool.git"
   },
   "dependencies": {
-    "selenium-webdriver": "2.46.1"
+    "selenium-webdriver": "^2.46.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5"
