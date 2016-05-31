@@ -55,7 +55,7 @@ driver.quit();
 
 #### start
 
-`start` returns a [selenium webdriver](http://selenium.googlecode.com/git/docs/api/javascript/module_selenium-webdriver.html) instance. It takes an optional argument object that can have two keys, `chromeBinaryPath` and `chromeOptions`.
+`start` returns a [selenium webdriver](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) instance. It takes an optional argument object that can have two keys, `chromeBinaryPath` and `chromeOptions`.
 
 * `chromeBinaryPath` must be a string.
 * `chromeOptions` can be an array or an array or strings.
@@ -69,7 +69,7 @@ drool.start({
 
 #### flow
 
-The `flow` method returns a Promise, that will be resolved (or rejected) after the exit step has been called (regardless of if you pass an exit method). Flow takes two required aguments, the first agument is an object that contains the flow actions, the second argument is a [selenium webdriver](http://selenium.googlecode.com/git/docs/api/javascript/module_selenium-webdriver.html) instance (For instance the one returned by [start](#start)
+The `flow` method returns a Promise, that will be resolved (or rejected) after the exit step has been called (regardless of if you pass an exit method). Flow takes two required aguments, the first agument is an object that contains the flow actions, the second argument is a [selenium webdriver](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) instance (For instance the one returned by [start](#start)
 
 ##### flow cycle
 
