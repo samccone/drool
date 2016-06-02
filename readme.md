@@ -1,4 +1,4 @@
-Drool is an automation layer that is used to measure if a set of "clean" actions results in a DOM and or Listener leak.
+🤤 Drool is an automation layer that is used to measure if a set of "clean" actions results in a DOM and or Listener leak.
 
 <p align="center">
   <a href="docs/api.md"> View the API Docs </a> </br> </br>
