@@ -98,6 +98,7 @@ tests.forEach(function(test) {
       driver.findElement(drool.webdriver.By.css(test.destroy)).click();
     },
     assert: function(after, initial) {
+      console.log(after);
       console.log(test.url, (after.gc.MinorGC.duration +
             after.gc.MajorGC.duration +
             after.gc['V8.GCScavenger'].duration +
