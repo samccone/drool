@@ -1,4 +1,8 @@
-var drool = require('../../');
+const drool = require('../../'),
+  By = drool.webdriver.By,
+  until = drool.webdriver.until,
+  Key = drool.webdriver.Key;
+
 var tests = [
   {
     url: 'http://todomvc.com/examples/emberjs/index.html',
@@ -79,23 +83,17 @@ tests.forEach(function(test) {
       driver.get(test.url);
     },
     action: function() {
-      driver.wait(function() {
-        return driver.isElementPresent(drool.webdriver.By.css(test.todo));
-      }, 10000);
+      driver.wait(until.elementLocated(By.css(test.todo)), 10000);
 
-      driver.findElement(drool.webdriver.By.css(test.todo)).sendKeys('find magical goats', drool.webdriver.Key.ENTER);
+      driver.findElement(By.css(test.todo)).sendKeys('find magical goats', Key.ENTER);
 
-      driver.wait(function() {
-        return driver.isElementPresent(drool.webdriver.By.css(test.li));
-      }, 1000);
+      driver.wait(until.elementLocated(By.css(test.li)), 1000);
 
-      driver.findElement(drool.webdriver.By.css(test.li)).click();
+      driver.findElement(By.css(test.li)).click();
 
-      driver.wait(function() {
-        return driver.isElementPresent(drool.webdriver.By.css(test.destroy));
-      }, 1000);
+      driver.wait(until.elementLocated(By.css(test.destroy)), 1000);
 
-      driver.findElement(drool.webdriver.By.css(test.destroy)).click();
+      driver.findElement(By.css(test.destroy)).click();
     },
     assert: function(after, initial) {
       console.log(test.url, (after.gc.MinorGC.duration +

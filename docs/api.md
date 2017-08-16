@@ -16,7 +16,7 @@ Drool's goal is to make it simple to add memory regression and profiling tests t
 
 To get started with drool:
 
-    npm i drool selenium-webdriver --save-dev
+    npm i drool assert --save-dev
 
 The next step is to require and [start](#start) drool.
 
