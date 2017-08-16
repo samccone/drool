@@ -12,7 +12,7 @@ node_js:
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- curl -Lo chromedriver.zip http://chromedriver.storage.googleapis.com/2.29/chromedriver_linux64.zip && unzip chromedriver.zip
+- curl -Lo chromedriver.zip http://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip && unzip chromedriver.zip
 script:
 - npm test
 - node test/analysis/gc-thrash.js
