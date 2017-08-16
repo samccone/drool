@@ -36,7 +36,7 @@ Chrome devtools is a powerful utility layer for detecting memory issues, yet the
 
 ##### Running
 
-Ensure that you have at least version `2.16.333243` of chromedriver.
+Drool works with versions of chromedriver from `2.25.426935` to `2.28.333243`.
 
 ```js
 var drool = require('drool');
