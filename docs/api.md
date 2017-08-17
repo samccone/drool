@@ -83,7 +83,7 @@ the "flow" action object is a set of life cycle key value pairs that will be inv
 6. `beforeAssert`
 7. Final Measurement is taken after via [getCounts](#getcounts)
 8. `exit`
-9. browser is closed
+9. browser is closed (if `closeBrowser`)
 10. `assert`
 
 Each step in the flow, **except for assert**, is optional. Keep in mind however that your flow should cleanly `exit`, and `action` should be able to be invoked an unlimited number of times.
