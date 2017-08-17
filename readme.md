@@ -60,8 +60,6 @@ drool.flow({
     assert.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
   }
 }, driver)
-
-driver.quit();
 ```
 
 [View the API Docs](docs/api.md)

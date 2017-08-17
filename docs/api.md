@@ -76,13 +76,15 @@ The `flow` method returns a Promise, that will be resolved (or rejected) after t
 the "flow" action object is a set of life cycle key value pairs that will be invoked in the following order.
 
 1. `setup`
-2. `action` (to prewarm any DOM/Listener cache)
-3. Initial Measurement is taken aftter via [getCounts](#getcounts)
-4. `action` * `repeatCount` times (repeat count defaults to 5)
-5. `beforeAssert`
-6. Final Measurement is taken after via [getCounts](#getcounts)
-7. `assert`
+2. `action` * `prewarmRepeatCount` (to prewarm any DOM/Listener cache)
+3. Initial Measurement is taken after via [getCounts](#getcounts)
+4. `afterPrewarm`, e.g. `() => driver.sleep(1000)` if it worth pausing before getting initial counts 
+5. `action` * `repeatCount` times (repeat count defaults to 5)
+6. `beforeAssert`
+7. Final Measurement is taken after via [getCounts](#getcounts)
 8. `exit`
+9. browser is closed
+10. `assert`
 
 Each step in the flow, **except for assert**, is optional. Keep in mind however that your flow should cleanly `exit`, and `action` should be able to be invoked an unlimited number of times.
 
