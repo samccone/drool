@@ -32,7 +32,7 @@ var driver = drool.start({
 The next step is to define a flow. A [flow](#flow) is a declarative hash where you define actions at given points in the lifecycle of your drool tests.
 
 ```js
-return drool.flow({
+var res = drool.flow({
   setup: function() {
     driver.get('file://' + path.join(__dirname, 'examples/', 'leaking.html'));
   },
@@ -48,7 +48,12 @@ return drool.flow({
 Once you are done interacting with the driver, you then will want to quit the driver (to close the browser).
 
 ```js
-driver.quit();
+res
+.then(() => driver.quit())
+.catch(e => {
+  driver.quit();
+  throw e;
+})
 ```
 
 ### API
@@ -83,8 +88,7 @@ the "flow" action object is a set of life cycle key value pairs that will be inv
 6. `beforeAssert`
 7. Final Measurement is taken after via [getCounts](#getcounts)
 8. `exit`
-9. browser is closed (if `closeBrowser` is truthy)
-10. `assert`
+9. `assert`
 
 Each step in the flow, **except for assert**, is optional. Keep in mind however that your flow should cleanly `exit`, and `action` should be able to be invoked an unlimited number of times.
 
