@@ -15,4 +15,5 @@ before_install:
 - curl -Lo chromedriver.zip http://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip && unzip chromedriver.zip
 script:
 - npm test
+- npm lint-test
 - node test/analysis/gc-thrash.js

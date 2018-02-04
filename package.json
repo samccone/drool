@@ -3,7 +3,8 @@
   "name": "drool",
   "version": "0.5.0",
   "scripts": {
-    "test": "mocha test/tests.js --timeout=10000"
+    "test": "mocha test/tests.js --timeout=10000",
+    "lint-test": "prettier --list-different"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
     "selenium-webdriver": "^3.5.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "prettier": "^1.10.2"
   }
 }
