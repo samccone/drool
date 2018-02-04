@@ -15,10 +15,6 @@ describe('memory tests', function() {
     this.driver = drool.start(config);
   });
 
-  afterEach(function() {
-    return this.driver.quit();
-  });
-
   it('inputs should not leak when added and removed', function() {
     var self = this;
 
