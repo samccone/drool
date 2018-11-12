@@ -57,7 +57,7 @@ drool.flow({
     driver.findElement(drool.webdriver.By.css('.destroy')).click();
   },
   assert: function(after, initial) {
-    assert.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
+    assert.stict.equal(initial.counts.nodes, after.counts.nodes, 'node count should match');
   }
 }, driver)
 .then(() => driver.quit())
